@@ -14,6 +14,18 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "GTCinetype";
+  src: url("./fonts/Cinetype/GT-Cinetype-Mono.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "GTAlpina";
+  src: url("./fonts/Alpina/GT-Alpina-Standard-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
 * {
   box-sizing: border-box;
   padding: 0;
