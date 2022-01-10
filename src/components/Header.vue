@@ -98,18 +98,22 @@ export default {
   background-color: #b3e6bc;
   width: 100%;
   padding: 14px 432px 14px 240px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: flex-end;
+  z-index: 2;
 }
 .header_logo {
   position: absolute;
-  top: -42px;
+  top: -50%;
   left: 240px;
+  max-width: 10%;
 }
 .header_burger {
-  width: 41px;
-  height: 41px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   text-align: center;
   display: flex;
@@ -122,6 +126,7 @@ export default {
   border-color: #0e2963;
 
   box-shadow: none;
+  padding: 0px 3px;
 }
 
 .burger_line {
@@ -130,6 +135,7 @@ export default {
   width: 23px;
   height: 2px;
   background-color: #0e2963;
+  cursor: pointer;
 }
 .burger_line::before {
   position: absolute;
@@ -159,23 +165,6 @@ export default {
   transform: rotate(-45deg);
 }
 
-.header_burger:hover {
-  background-color: #0e2963;
-  cursor: pointer;
-}
-.header_burger:hover .burger_line {
-  background-color: #fff;
-}
-.header_burger:hover .burger_line::before {
-  background-color: #fff;
-}
-.header_burger:hover .burger_line::after {
-  background-color: #fff;
-}
-.header_burger:hover .burger_line-active {
-  background-color: transparent;
-}
-
 .mainmenu {
   background-color: #b3e6bc;
   height: 100vh;
@@ -186,13 +175,14 @@ export default {
   justify-content: flex-start;
   align-items: center;
 
-  position: absolute;
+  padding: 12%;
+  z-index: 1;
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  padding: 14%;
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 }
 .mainmenu-active {
   display: flex;
@@ -212,13 +202,199 @@ export default {
   color: #0e1c70;
   cursor: pointer;
 
-  font-size: 55px;
-  line-height: 73px;
+  font-size: 3vw;
+  line-height: 4vw;
   font-family: "GTCinetype";
   text-transform: uppercase;
 }
 .item_link-active::before {
   content: "\2192";
   margin-right: 32px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .header_logo {
+    top: -35px;
+    left: 25px;
+    max-width: 12%;
+  }
+
+  .item_link {
+    font-size: 4vw;
+    line-height: 5vw;
+  }
+  .mainmenu {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10% 5px;
+  }
+  .mainmenu_list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .item_link-active::before {
+    margin-right: 5px;
+  }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .header_logo {
+    top: -20px;
+    left: 25px;
+    max-width: 15%;
+  }
+
+  .item_link {
+    font-size: 4vw;
+    line-height: 5vw;
+  }
+  .mainmenu {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10% 5px;
+  }
+  .mainmenu_list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .item_link-active::before {
+    margin-right: 5px;
+  }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 769px) and (max-width: 991px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .header_logo {
+    top: -20px;
+    left: 25px;
+    max-width: 15%;
+  }
+
+  .item_link {
+    font-size: 4vw;
+    line-height: 5vw;
+  }
+  .mainmenu {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10% 5px;
+  }
+  .mainmenu_list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .item_link-active::before {
+    margin-right: 5px;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .header_logo {
+    top: -20px;
+    left: 25px;
+    max-width: 15%;
+  }
+
+  .item_link {
+    font-size: 4vw;
+    line-height: 5vw;
+  }
+  .mainmenu {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10% 5px;
+  }
+  .mainmenu_list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .item_link-active::before {
+    margin-right: 5px;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .mainmenu {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30% 5px;
+  }
+  .item_link {
+    font-size: 6.5vw;
+    line-height: 10vw;
+  }
+  .header_logo {
+    top: -20px;
+    left: 25px;
+    max-width: 30%;
+  }
+}
+
+/* Iphone 5 */
+@media (max-width: 320px) {
+  .item_link {
+    font-size: 6vw;
+    line-height: 10vw;
+  }
+  .header_logo {
+    top: -18px;
+    left: 25px;
+    max-width: 30%;
+  }
+}
+
+@media (hover: hover) {
+  .header_burger:hover {
+    background-color: #0e2963;
+    cursor: pointer;
+  }
+  .header_burger:hover .burger_line {
+    background-color: #fff;
+  }
+  .header_burger:hover .burger_line::before {
+    background-color: #fff;
+  }
+  .header_burger:hover .burger_line::after {
+    background-color: #fff;
+  }
+  .header_burger:hover .burger_line-active {
+    background-color: transparent;
+  }
 }
 </style>
