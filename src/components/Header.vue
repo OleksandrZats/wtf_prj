@@ -98,7 +98,7 @@ export default {
   background-color: #b3e6bc;
   width: 100%;
   padding: 14px 432px 14px 240px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
