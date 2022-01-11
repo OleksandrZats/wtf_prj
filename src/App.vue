@@ -26,7 +26,7 @@ export default {
   methods: {
     calculateSectionOffsets() {
       setTimeout(() => {
-        let sections = document.getElementsByTagName("section");
+        let sections = document.getElementsByClassName("123");
         let length = sections.length;
 
         for (let i = 0; i < length; i++) {
@@ -58,7 +58,8 @@ export default {
       this.inMove = true;
       this.activeSection--;
 
-      if (this.activeSection < 0) this.activeSection = this.offsets.length - 1;
+      //if (this.activeSection < 0) this.activeSection = this.offsets.length - 1; //For infinit-scroll
+      if (this.activeSection < 0) this.activeSection = 0;
 
       this.scrollToSection(this.activeSection, true);
     },
@@ -66,7 +67,8 @@ export default {
       this.inMove = true;
       this.activeSection++;
 
-      if (this.activeSection > this.offsets.length - 1) this.activeSection = 0;
+      //if (this.activeSection > this.offsets.length - 1) this.activeSection = 0; //For infinit-scroll
+      if (this.activeSection > this.offsets.length - 1) this.activeSection = this.offsets.length - 1;
 
       this.scrollToSection(this.activeSection, true);
     },
@@ -75,7 +77,7 @@ export default {
 
       this.activeSection = id;
       this.inMove = true;
-      console.log(id);
+
       document
         .getElementsByClassName("aboutUs")
         [id].scrollIntoView({ behavior: "smooth" });
@@ -146,7 +148,6 @@ export default {
   margin: 0;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

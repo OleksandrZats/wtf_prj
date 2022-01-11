@@ -38,7 +38,7 @@ export default {
 
 <style>
 .aboutUs {
-  padding: 5% 0;
+  padding: 9% 0 5%;
   width: 100%;
   height: 100vh;
   color: #0e1c70;
