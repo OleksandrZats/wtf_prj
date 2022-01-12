@@ -60,7 +60,8 @@ export default {
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
   .titleSubTitle_header {
-    font-size: 40px;
+    font-size: 35px;
+    max-width: 50%;
   }
   .titleSubTitle_subtitle_hr {
     min-width: 100px;
@@ -77,8 +78,8 @@ export default {
     display: block;
   }
   .titleSubTitle_header {
-    font-size: 45px;
-    max-width: 100%;
+    font-size: 40px;
+    width: 100%;
     padding-left: 90px;
     padding-right: 130px;
   }
@@ -87,9 +88,12 @@ export default {
     max-width: 100%;
   }
   .titleSubTitle_subtitle_hr:after {
-    font-size: 30px;
+    font-size: 25px;
     padding-right: 130px;
     max-width: none;
+  }
+  .titleSubTitle_hr {
+    display: none;
   }
 }
 
@@ -99,8 +103,8 @@ export default {
     display: block;
   }
   .titleSubTitle_header {
-    font-size: 45px;
-    max-width: 100%;
+    font-size: 30px;
+    width: 100%;
     padding-left: 90px;
     padding-right: 130px;
   }
@@ -109,9 +113,12 @@ export default {
     max-width: 100%;
   }
   .titleSubTitle_subtitle_hr:after {
-    font-size: 30px;
+    font-size: 20px;
     padding-right: 130px;
     max-width: none;
+  }
+  .titleSubTitle_hr {
+    display: none;
   }
 }
 
@@ -122,18 +129,20 @@ export default {
   }
   .titleSubTitle_header {
     font-size: 35px;
-    max-width: 100%;
+    width: 100%;
     padding-left: 15px;
     padding-right: 18px;
   }
   .titleSubTitle_subtitle_hr {
     width: 100%;
-    max-width: 100%;
   }
   .titleSubTitle_subtitle_hr:after {
     font-size: 20px;
     padding-right: 18px;
     max-width: none;
+  }
+  .titleSubTitle_hr {
+    display: none;
   }
 }
 

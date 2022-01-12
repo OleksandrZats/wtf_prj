@@ -1,5 +1,5 @@
 <template>
-  <section class="smartContracts scroll-to" @scroll="handleScroll">
+  <section class="smartContracts block scroll-to" @scroll="handleScroll">
     <div class="smartContracts_cont">
       <TitleSubTitle
         :titlesubtitle="{
@@ -97,7 +97,7 @@ export default {
 
 <style>
 .smartContracts {
-  padding: 6% 0 5%;
+  padding: 9% 0 9%;
   width: 100%;
   height: 100vh;
   color: #0e1c70;
@@ -105,11 +105,11 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 .smartContracts_cont {
   width: 100%;
-  height: 80vh;
   color: #0e1c70;
   display: flex;
   flex-direction: column;
@@ -149,21 +149,6 @@ export default {
   align-items: flex-start;
 }
 
-.note_that {
-  font-size: 37px;
-  font-family: "GT Cinetype";
-  color: rgb(14, 28, 112);
-  text-transform: uppercase;
-  line-height: 1.162;
-  text-align: left;
-  position: absolute;
-  left: 2559.594px;
-  top: 2129.346px;
-  width: 210px;
-  height: 28px;
-  z-index: 62;
-}
-
 .note::before {
   font-size: 30px;
   font-family: "GTCinetype";
@@ -187,7 +172,7 @@ export default {
   list-style: none;
 }
 .notelist_item {
-  font-size: 24px;
+  font-size: 20px;
   font-family: "GTCinetype";
   color: rgb(14, 28, 112);
   line-height: 1.259;
@@ -209,6 +194,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
+  justify-self: flex-end;
 }
 
 .notice::before {
@@ -262,9 +248,12 @@ export default {
 .getStartList_item {
   margin-bottom: 10px;
   font-size: 27px;
-  font-family: "GT Alpina";
+  font-family: "GTAlpina";
   color: rgb(14, 28, 112);
   line-height: 1.162;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
 }
 
 .getStartList_item::before {
@@ -280,19 +269,19 @@ export default {
   border-style: solid;
   border-radius: 10px;
   min-width: 350px;
-  padding: 25px 40px 40px;
-  
+  padding: 25px 30px 30px;
+
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 
   align-self: center;
-  margin-top: 15%;
+  margin-top: 12%;
 }
 
 .quote_text {
-    font-size: 27px;
+  font-size: 27px;
   font-family: "GTCinetype";
   color: rgb(14, 28, 112);
   text-transform: uppercase;
@@ -300,19 +289,19 @@ export default {
 }
 
 .links {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .link {
-    width: 70px;
+  width: 70px;
 }
-.link:first-child{
-    margin-right: 25px;
+.link:first-child {
+  margin-right: 25px;
 }
 
-.link img{
-    width: 70px;
+.link img {
+  width: 70px;
 }
 
 /* Large desktops and laptops */
@@ -321,21 +310,179 @@ export default {
 
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .smartContracts {
+    padding-top: 13%;
+  }
+  .smartContracts_textList {
+    padding-top: 5%;
+    font-size: 27px;
+    width: 84%;
+    text-align: left;
+  }
+  .note {
+    width: 84%;
+  }
+  .getStart_cont {
+    width: 84%;
+  }
+  .quote {
+    max-width: 40%;
+    padding: 12px 20px 20px;
+  }
 }
 
 /* Portrait tablets and small desktops */
 @media (min-width: 769px) and (max-width: 991px) {
+  .smartContracts {
+    padding-top: 13%;
+  }
+  .smartContracts_textList {
+    padding-top: 5%;
+    font-size: 27px;
+    width: 84%;
+    text-align: left;
+  }
+  .note {
+    width: 84%;
+  }
+  .note::before {
+    font-size: 25px;
+    padding: 10px 5px;
+    min-width: 150x;
+  }
+  .notice {
+    width: 70%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .notice_text {
+    font-size: 20px;
+  }
+  .getStart_cont {
+    width: 84%;
+  }
+  .quote {
+    max-width: 40%;
+    padding: 12px 20px 20px;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 768px) {
+  .smartContracts {
+    padding-top: 13%;
+  }
+  .smartContracts_textList {
+    padding-top: 5%;
+    font-size: 27px;
+    width: 84%;
+    text-align: left;
+  }
+  .note {
+    width: 84%;
+  }
+  .note::before {
+    font-size: 25px;
+    padding: 10px 5px;
+    min-width: 150x;
+  }
+  .notice {
+    width: 70%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .notice_text {
+    font-size: 20px;
+  }
+  .getStart_cont {
+    width: 84%;
+  }
+  .getStart_head {
+    font-size: 32px;
+  }
+  .quote {
+    max-width: 40%;
+    padding: 10px 20px 20px;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
+  .smartContracts {
+    padding: 30% 0 13%;
+  }
+  .smartContracts_textList {
+    padding-top: 5%;
+    font-size: 23px;
+    width: 97%;
+    text-align: left;
+  }
+  .note {
+    width: 84%;
+    flex-direction: column;
+  }
+  .note::before {
+    font-size: 20px;
+    padding: 10px 5px;
+    min-width: 150x;
+  }
+  .note_list {
+    padding-left: 0;
+  }
+  .notelist_item {
+    font-size: 15px;
+  }
+  .notice_text {
+    font-size: 15px;
+  }
+  .getStartList_item {
+    font-size: 20px;
+  }
+  .getStart_head {
+    font-size: 25px;
+  }
+  .quote {
+    min-width: 90%;
+    margin-top: 5%;
+    padding: 10px 15px 10px;
+  }
+  .quote_text {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
 }
 
 /* Iphone 5 */
 @media (max-width: 320px) {
+  .textlist_item {
+    font-size: 17px;
+  }
+  .notelist_item {
+    font-size: 13px;
+  }
+  .notice {
+    width: 80%;
+  }
+  .notice_text {
+    font-size: 13px;
+  }
+  .getStart_head {
+    font-size: 20px;
+  }
+  .getStartList_item {
+    font-size: 17;
+  }
+  .quote {
+    min-width: 100%;
+    margin-top: 40%;
+    padding: 5px;
+  }
+  .quote_text {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .link img {
+    width: 50px;
+  }
 }
 </style>

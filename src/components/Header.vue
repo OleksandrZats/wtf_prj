@@ -1,7 +1,11 @@
 <template>
   <div class="header">
     <img class="header_logo" src="../assets/logo.png" alt="" />
-    <button @click="setActiveMenu" class="header_burger">
+    <button
+      @click="setActiveMenu()"
+      @touchend="setActiveMenu()"
+      class="header_burger"
+    >
       <div
         :class="{ 'burger_line-active': activeBurger }"
         class="burger_line"
@@ -14,7 +18,12 @@
         <a
           :class="{ 'item_link-active': activeLink[0] }"
           class="item_link"
-          @click="setLinkActive(0),scrollToSectionMenu('aboutUs')"
+          @click="
+            setLinkActive(0), scrollToSectionMenu('aboutUs'), changeSection()
+          "
+          @touchend="
+            setLinkActive(0), scrollToSectionMenu('aboutUs'), changeSection()
+          "
           >About us</a
         >
       </li>
@@ -22,7 +31,16 @@
         <a
           :class="{ 'item_link-active': activeLink[1] }"
           class="item_link"
-          @click="setLinkActive(1),scrollToSectionMenu('smartContracts')"
+          @click="
+            setLinkActive(1),
+              scrollToSectionMenu('smartContracts'),
+              changeSection()
+          "
+          @touchend="
+            setLinkActive(0),
+              scrollToSectionMenu('smartContracts'),
+              changeSection()
+          "
           >Smart contracts audit</a
         >
       </li>
@@ -30,7 +48,16 @@
         <a
           :class="{ 'item_link-active': activeLink[2] }"
           class="item_link"
-          @click="setLinkActive(2),scrollToSectionMenu('cryptoAssets')"
+          @click="
+            setLinkActive(2),
+              scrollToSectionMenu('cryptoAssets'),
+              changeSection()
+          "
+          @touchend="
+            setLinkActive(0),
+              scrollToSectionMenu('cryptoAssets'),
+              changeSection()
+          "
           >Crypto assets recovery</a
         >
       </li>
@@ -38,7 +65,12 @@
         <a
           :class="{ 'item_link-active': activeLink[3] }"
           class="item_link"
-          @click="setLinkActive(3),scrollToSectionMenu('blockchain')"
+          @click="
+            setLinkActive(3), scrollToSectionMenu('blockchain'), changeSection()
+          "
+          @touchend="
+            setLinkActive(0), scrollToSectionMenu('blockchain'), changeSection()
+          "
           >Blockchain forensics</a
         >
       </li>
@@ -46,7 +78,16 @@
         <a
           :class="{ 'item_link-active': activeLink[4] }"
           class="item_link"
-          @click="setLinkActive(4),scrollToSectionMenu('nftProjects')"
+          @click="
+            setLinkActive(4),
+              scrollToSectionMenu('nftProjects'),
+              changeSection()
+          "
+          @touchend="
+            setLinkActive(0),
+              scrollToSectionMenu('nftProjects'),
+              changeSection()
+          "
           >Nft projects</a
         >
       </li>
@@ -54,7 +95,12 @@
         <a
           :class="{ 'item_link-active': activeLink[5] }"
           class="item_link"
-          @click="setLinkActive(5),scrollToSectionMenu('tokenomics')"
+          @click="
+            setLinkActive(5), scrollToSectionMenu('tokenomics'), changeSection()
+          "
+          @touchend="
+            setLinkActive(0), scrollToSectionMenu('tokenomics'), changeSection()
+          "
           >Tokenomics</a
         >
       </li>
@@ -62,7 +108,10 @@
         <a
           :class="{ 'item_link-active': activeLink[6] }"
           class="item_link"
-          @click="setLinkActive(6),scrollToSectionMenu('dao')"
+          @click="setLinkActive(6), scrollToSectionMenu('dao'), changeSection()"
+          @touchend="
+            setLinkActive(0), scrollToSectionMenu('dao'), changeSection()
+          "
           >Dao</a
         >
       </li>
@@ -76,9 +125,11 @@ export default {
     return {
       activeMenu: false,
       activeBurger: false,
-      activeLink: [true, false, false, false, false, false, false],
+      name: "aboutUs",
     };
   },
+  props: ["activeLink"],
+  emits: ["scrollTo"],
   methods: {
     setActiveMenu() {
       this.activeMenu = !this.activeMenu;
@@ -86,14 +137,40 @@ export default {
     },
     setLinkActive(pos) {
       this.setActiveMenu();
-      this.activeLink = this.activeLink.map((el) => (el = false));
-      this.activeLink[pos] = !this.activeLink[pos];
     },
     scrollToSectionMenu(name, force = false) {
-      document.getElementsByClassName(name)[0].scrollIntoView({ behavior: "smooth" });
+      this.name = name;
+      document
+        .getElementsByClassName(name)[0]
+        .scrollIntoView({ behavior: "smooth" });
       setTimeout(() => {
         this.inMove = false;
       }, 400);
+    },
+    changeSection() {
+      let number = 0;
+      let numberBlocks = 0;
+      let elements = document.getElementsByClassName("scroll-to");
+      let blocks = document.getElementsByClassName("block");
+      for (let index = 0; index < elements.length; index++) {
+        if (
+          elements[index].classList.contains(this.name) &&
+          elements[index].classList.contains("block")
+        ) {
+          number = index;
+          break;
+        }
+      }
+      for (let index = 0; index < blocks.length; index++) {
+        if (blocks[index].classList.contains(this.name)) {
+          numberBlocks = index;
+          break;
+        }
+      }
+      this.$emit("scrollTo", {
+        section: number,
+        block: numberBlocks,
+      });
     },
   },
 };
@@ -109,7 +186,7 @@ export default {
   left: 0;
   display: flex;
   justify-content: flex-end;
-  z-index: 2;
+  z-index: 10;
 }
 .header_logo {
   position: absolute;
@@ -188,7 +265,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
 }
 .mainmenu-active {
   display: flex;

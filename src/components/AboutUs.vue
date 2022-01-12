@@ -1,5 +1,5 @@
 <template>
-  <section class="aboutUs scroll-to" @scroll="handleScroll">
+  <section class="aboutUs block scroll-to" @scroll="handleScroll">
     <div class="aboutUs_cont">
       <TitleSubTitle
         :titlesubtitle="{
@@ -25,7 +25,6 @@
 import TitleSubTitle from "./TitleSubTitle.vue";
 
 export default {
-  props: ["titlesubtitle"],
   data() {
     return {};
   },
@@ -38,7 +37,7 @@ export default {
 
 <style>
 .aboutUs {
-  padding: 9% 0 5%;
+  padding: 7% 0 7%;
   width: 100%;
   height: 100vh;
   color: #0e1c70;
@@ -46,11 +45,11 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 .aboutUs_cont {
   width: 100%;
-  height: 80vh;
   color: #0e1c70;
   display: flex;
   flex-direction: column;
@@ -65,12 +64,13 @@ export default {
   width: 46%;
   padding-left: 10px;
   text-align: left;
+  padding-top: 2%;
 }
 
 .subtextCont {
-  max-width: 35%;
+  max-width: 40%;
   padding: 40px 0 20px;
-  border: solid 1px black;
+  border: solid 1px #0e1c70;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -101,21 +101,105 @@ export default {
 
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .aboutUs {
+    padding-top: 13%;
+  }
+  .aboutUs_text {
+    padding-top: 5%;
+    font-size: 27px;
+    width: 84%;
+    text-align: left;
+  }
+  .subtextCont {
+    padding: 40px 10px 30px;
+    max-width: 50%;
+  }
+  .subtextCont_text {
+    font-size: 27px;
+  }
+  .subtextCont::after {
+    bottom: -53%;
+  }
 }
 
 /* Portrait tablets and small desktops */
 @media (min-width: 769px) and (max-width: 991px) {
+  .aboutUs {
+    padding-top: 13%;
+  }
+  .aboutUs_text {
+    padding-top: 5%;
+    font-size: 26px;
+    width: 80%;
+    text-align: left;
+  }
+  .subtextCont {
+    padding: 40px 10px 30px;
+    max-width: 50%;
+  }
+  .subtextCont_text {
+    font-size: 27px;
+  }
+  .subtextCont::after {
+    bottom: -43%;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 768px) {
+  .aboutUs {
+    padding-top: 13%;
+  }
+  .aboutUs_text {
+    padding-top: 5%;
+    font-size: 26px;
+    width: 97%;
+    text-align: left;
+  }
+  .subtextCont {
+    padding: 40px 10px 30px;
+    max-width: 80%;
+  }
+  .subtextCont_text {
+    font-size: 27px;
+  }
+  .subtextCont::after {
+    bottom: -53%;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
+  .aboutUs {
+    padding: 30% 0 13%;
+  }
+  .aboutUs_text {
+    padding-top: 5%;
+    font-size: 23px;
+    width: 97%;
+    text-align: left;
+  }
+  .subtextCont {
+    padding: 20px 5px 15px;
+    max-width: 70%;
+  }
+  .subtextCont_text {
+    font-size: 17px;
+  }
+  .subtextCont::after {
+    bottom: -90%;
+    width: 30px;
+  }
 }
 
 /* Iphone 5 */
 @media (max-width: 320px) {
+  .aboutUs_text {
+    padding-top: 10%;
+  }
+  .subtextCont::after {
+    bottom: -66%;
+    width: 25px;
+  }
 }
 </style>

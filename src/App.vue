@@ -1,12 +1,12 @@
 <template>
-  <Header />
+  <Header :activeLink="activeLink" @scrollTo="scroll" />
   <AboutUs />
   <SmartContractsAudit />
   <CryptoAssets />
   <Blockchain />
-  <Nft />
+  <NftProjects />
   <Tokenomics />
-  <Dao />
+  <DaoPage />
 </template>
 
 <script>
@@ -15,9 +15,9 @@ import AboutUs from "./components/AboutUs.vue";
 import SmartContractsAudit from "./components/SmartContractsAudit.vue";
 import CryptoAssets from "./components/CryptoAssets.vue";
 import Blockchain from "./components/Blockchain.vue";
-import Nft from "./components/Nft.vue";
+import NftProjects from "./components/NftProjects.vue";
 import Tokenomics from "./components/Tokenomics.vue";
-import Dao from "./components/Dao.vue";
+import DaoPage from "./components/DaoPage.vue";
 
 export default {
   name: "App",
@@ -25,8 +25,11 @@ export default {
     return {
       inMove: false,
       activeSection: 0,
+      activeBlock: 0,
       offsets: [],
       touchStartY: 0,
+      current: 0,
+      activeLink: [true, false, false, false, false, false, false],
     };
   },
   components: {
@@ -35,17 +38,18 @@ export default {
     SmartContractsAudit,
     CryptoAssets,
     Blockchain,
-    Nft,
+    NftProjects,
     Tokenomics,
-    Dao,
+    DaoPage,
+  },
+  mounted: function () {
+    this.scrollToSection(0); //method1 will execute at pageload
   },
   methods: {
     calculateSectionOffsets() {
       setTimeout(() => {
         let sections = document.getElementsByClassName("scroll-to");
-        console.log(sections)
         let length = sections.length;
-        console.log(length)
 
         for (let i = 0; i < length; i++) {
           let sectionOffset = sections[i].offsetTop;
@@ -74,29 +78,73 @@ export default {
     },
     moveDown() {
       this.inMove = true;
-      this.activeSection--;
+      let temp = this.activeSection--;
+      let prewPageFlag = false;
 
       //if (this.activeSection < 0) this.activeSection = this.offsets.length - 1; //For infinit-scroll
       if (this.activeSection < 0) this.activeSection = 0;
+
+      let tempArr = [
+        ...document.getElementsByClassName("scroll-to")[this.activeSection]
+          .classList,
+      ];
+      document
+        .getElementsByClassName("scroll-to")
+        [temp].classList.forEach((elem) => tempArr.push(elem));
+      tempArr = [...new Set(tempArr)];
+      console.log(tempArr);
+      console.log(this.activeBlock);
+      if (
+        tempArr.length >
+        document.getElementsByClassName("scroll-to")[this.activeSection]
+          .classList.length
+      )
+        this.activeBlock--;
+
+      console.log(this.activeBlock);
+      this.activeLink = this.activeLink.map((el) => (el = false));
+      this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
 
       this.scrollToSection(this.activeSection, true);
     },
     moveUp() {
       this.inMove = true;
-      this.activeSection++;
+      let temp = this.activeSection++;
 
       //if (this.activeSection > this.offsets.length - 1) this.activeSection = 0; //For infinit-scroll
-      if (this.activeSection > this.offsets.length - 1) this.activeSection = this.offsets.length - 1;
+      if (this.activeSection > this.offsets.length - 1)
+        this.activeSection = this.offsets.length - 1;
+
+      if (
+        document
+          .getElementsByClassName("scroll-to")
+          [this.activeSection].classList.contains("block") &&
+        !(temp >= this.offsets.length - 1)
+      )
+        this.activeBlock++;
+
+      this.activeLink = this.activeLink.map((el) => (el = false));
+      this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
 
       this.scrollToSection(this.activeSection, true);
     },
+    scroll(i) {
+      if (this.activeBlock != i.block) {
+        this.scrollToSection(i.section);
+
+        this.activeLink = this.activeLink.map((el) => (el = false));
+        this.activeLink[i.block] = !this.activeLink[i.block];
+
+        this.activeBlock = i.block;
+      }
+    },
     scrollToSection(id, force = false) {
       if (this.inMove && !force) return false;
-
       this.activeSection = id;
       this.inMove = true;
-
-      document.getElementsByClassName("scroll-to")[id].scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementsByClassName("scroll-to")
+        [id].scrollIntoView({ behavior: "smooth" });
       setTimeout(() => {
         this.inMove = false;
       }, 400);
