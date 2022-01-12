@@ -18,14 +18,14 @@ export default {
 <style>
 .titleSubTitle {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
   color: #0e1c70;
 }
 .titleSubTitle_header {
   flex-shrink: 1;
-  width: 46%;
+  width: 35%;
   font-size: 55px;
   font-family: "GTCinetype";
   text-align: left;
@@ -36,7 +36,7 @@ export default {
   display: flex;
   border-bottom: 1px solid #0e1c70;
   margin-bottom: 1.5%;
-  margin-right: 10px;
+  margin-right: 20px;
   justify-content: flex-end;
   align-items: flex-end;
 }
@@ -48,8 +48,11 @@ export default {
   max-width: 200px;
 }
 .titleSubTitle_hr {
-  width: 27%;
+  width: 40%;
   display: inline-block;
+  z-index: 0;
+  position: absolute;
+  right: 0;
   border-bottom: 1px solid #0e1c70;
   margin-bottom: 1.5%;
   margin-left: 0;
@@ -64,7 +67,7 @@ export default {
   }
   .titleSubTitle_subtitle_hr:after {
     font-size: 20px;
-    max-width: 200px;
+    max-width: 150px;
   }
 }
 

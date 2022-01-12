@@ -1,13 +1,23 @@
 <template>
   <Header />
-  <AboutUs class="123" />
-  <AboutUs class="123" />
-  <AboutUs class="123" />
+  <AboutUs />
+  <SmartContractsAudit />
+  <CryptoAssets />
+  <Blockchain />
+  <Nft />
+  <Tokenomics />
+  <Dao />
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import AboutUs from "./components/AboutUs.vue";
+import SmartContractsAudit from "./components/SmartContractsAudit.vue";
+import CryptoAssets from "./components/CryptoAssets.vue";
+import Blockchain from "./components/Blockchain.vue";
+import Nft from "./components/Nft.vue";
+import Tokenomics from "./components/Tokenomics.vue";
+import Dao from "./components/Dao.vue";
 
 export default {
   name: "App",
@@ -22,12 +32,20 @@ export default {
   components: {
     Header,
     AboutUs,
+    SmartContractsAudit,
+    CryptoAssets,
+    Blockchain,
+    Nft,
+    Tokenomics,
+    Dao,
   },
   methods: {
     calculateSectionOffsets() {
       setTimeout(() => {
-        let sections = document.getElementsByClassName("123");
+        let sections = document.getElementsByClassName("scroll-to");
+        console.log(sections)
         let length = sections.length;
+        console.log(length)
 
         for (let i = 0; i < length; i++) {
           let sectionOffset = sections[i].offsetTop;
@@ -78,9 +96,7 @@ export default {
       this.activeSection = id;
       this.inMove = true;
 
-      document
-        .getElementsByClassName("aboutUs")
-        [id].scrollIntoView({ behavior: "smooth" });
+      document.getElementsByClassName("scroll-to")[id].scrollIntoView({ behavior: "smooth" });
       setTimeout(() => {
         this.inMove = false;
       }, 400);

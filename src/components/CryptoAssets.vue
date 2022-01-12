@@ -1,13 +1,13 @@
 <template>
-  <section class="aboutUs scroll-to" @scroll="handleScroll">
-    <div class="aboutUs_cont">
+  <section class="cryptoAssets scroll-to" @scroll="handleScroll">
+    <div class="cryptoAssets_cont">
       <TitleSubTitle
         :titlesubtitle="{
           title: 'Blockchain and Smart Contracts Software Development',
-          subtitle: 'about us',
+          subtitle: 'crypto assets recovery',
         }"
       />
-      <p class="aboutUs_text">
+      <p class="cryptoAssets_text">
         We utilize our expertise and passion to build blockchain based solutions
         to empower businesses and inventive entrepreneurs to automate
         operations, integrate and upgrade novel and legacy systems, or build
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-.aboutUs {
+.cryptoAssets {
   padding: 9% 0 5%;
   width: 100%;
   height: 100vh;
@@ -48,7 +48,7 @@ export default {
   position: relative;
 }
 
-.aboutUs_cont {
+.cryptoAssets_cont {
   width: 100%;
   height: 80vh;
   color: #0e1c70;
@@ -58,7 +58,7 @@ export default {
   position: relative;
 }
 
-.aboutUs_text {
+.cryptoAssets_text {
   font-size: 30px;
   font-family: "GTAlpina";
   line-height: 1.162;

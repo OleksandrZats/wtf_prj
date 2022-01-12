@@ -14,7 +14,7 @@
         <a
           :class="{ 'item_link-active': activeLink[0] }"
           class="item_link"
-          @click="setLinkActive(0)"
+          @click="setLinkActive(0),scrollToSectionMenu('aboutUs')"
           >About us</a
         >
       </li>
@@ -22,7 +22,7 @@
         <a
           :class="{ 'item_link-active': activeLink[1] }"
           class="item_link"
-          @click="setLinkActive(1)"
+          @click="setLinkActive(1),scrollToSectionMenu('smartContracts')"
           >Smart contracts audit</a
         >
       </li>
@@ -30,7 +30,7 @@
         <a
           :class="{ 'item_link-active': activeLink[2] }"
           class="item_link"
-          @click="setLinkActive(2)"
+          @click="setLinkActive(2),scrollToSectionMenu('cryptoAssets')"
           >Crypto assets recovery</a
         >
       </li>
@@ -38,7 +38,7 @@
         <a
           :class="{ 'item_link-active': activeLink[3] }"
           class="item_link"
-          @click="setLinkActive(3)"
+          @click="setLinkActive(3),scrollToSectionMenu('blockchain')"
           >Blockchain forensics</a
         >
       </li>
@@ -46,7 +46,7 @@
         <a
           :class="{ 'item_link-active': activeLink[4] }"
           class="item_link"
-          @click="setLinkActive(4)"
+          @click="setLinkActive(4),scrollToSectionMenu('nftProjects')"
           >Nft projects</a
         >
       </li>
@@ -54,7 +54,7 @@
         <a
           :class="{ 'item_link-active': activeLink[5] }"
           class="item_link"
-          @click="setLinkActive(5)"
+          @click="setLinkActive(5),scrollToSectionMenu('tokenomics')"
           >Tokenomics</a
         >
       </li>
@@ -62,7 +62,7 @@
         <a
           :class="{ 'item_link-active': activeLink[6] }"
           class="item_link"
-          @click="setLinkActive(6)"
+          @click="setLinkActive(6),scrollToSectionMenu('dao')"
           >Dao</a
         >
       </li>
@@ -88,6 +88,12 @@ export default {
       this.setActiveMenu();
       this.activeLink = this.activeLink.map((el) => (el = false));
       this.activeLink[pos] = !this.activeLink[pos];
+    },
+    scrollToSectionMenu(name, force = false) {
+      document.getElementsByClassName(name)[0].scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        this.inMove = false;
+      }, 400);
     },
   },
 };
