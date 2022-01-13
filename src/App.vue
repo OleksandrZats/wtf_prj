@@ -54,6 +54,7 @@ export default {
     DaoPage,
   },
   mounted: function () {
+    if(isNaN(localStorage.activeSection) || localStorage.activeSection == null || localStorage.activeSection == undefined) this.activeSection = 0
     this.activeSection = localStorage.activeSection || 0;
     this.scrollToSection(this.activeSection);
   },
