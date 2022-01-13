@@ -3,7 +3,7 @@
     <div class="tokenomics_cont">
       <TitleSubTitle
         :titlesubtitle="{
-          title: 'tokenomics',
+          title: 'Lorem ipsum dolor sit amet consectetur',
           subtitle: 'tokenomics',
         }"
       />

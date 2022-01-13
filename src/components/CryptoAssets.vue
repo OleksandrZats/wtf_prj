@@ -3,7 +3,7 @@
     <div class="cryptoAssets_cont">
       <TitleSubTitle
         :titlesubtitle="{
-          title: 'crypto assets recovery',
+          title: 'Lorem ipsum dolor sit amet consectetur',
           subtitle: 'crypto assets recovery',
         }"
       />

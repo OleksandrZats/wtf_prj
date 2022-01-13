@@ -167,7 +167,7 @@ export default {
   position: absolute;
   top: -50%;
   left: 240px;
-  max-width: 10%;
+  max-width: 8%;
 }
 .header_burger {
   width: 40px;

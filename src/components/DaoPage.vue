@@ -3,7 +3,7 @@
     <div class="dao_cont">
       <TitleSubTitle
         :titlesubtitle="{
-          title: 'dao',
+          title: 'Lorem ipsum dolor sit amet consectetur',
           subtitle: 'dao',
         }"
       />

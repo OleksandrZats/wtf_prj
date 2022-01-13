@@ -76,8 +76,6 @@ export default {
   align-items: center;
   position: relative;
   text-align: center;
-  
-  margin-bottom: 10%;
 }
 .subtextCont::after {
   content: "";
@@ -161,6 +159,7 @@ export default {
   .subtextCont {
     padding: 40px 10px 30px;
     max-width: 80%;
+    margin-bottom: 15%;
   }
   .subtextCont_text {
     font-size: 27px;

@@ -3,7 +3,7 @@
     <div class="nftProjects_cont">
       <TitleSubTitle
         :titlesubtitle="{
-          title: 'nft projects',
+          title: 'Lorem ipsum dolor sit amet consectetur',
           subtitle: 'nft projects',
         }"
       />

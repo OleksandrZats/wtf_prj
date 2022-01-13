@@ -3,7 +3,7 @@
     <div class="blockchain_cont">
       <TitleSubTitle
         :titlesubtitle="{
-          title: 'blockchain forensics',
+          title: 'Lorem ipsum dolor sit amet consectetur',
           subtitle: 'blockchain forensics',
         }"
       />

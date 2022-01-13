@@ -195,7 +195,6 @@ export default {
   align-items: center;
   position: relative;
   justify-self: flex-end;
-  margin-bottom: 10%;
 }
 
 .notice::before {
@@ -391,6 +390,8 @@ export default {
     width: 70%;
     padding-left: 2%;
     padding-right: 2%;
+  
+  margin-bottom: 10%;
   }
   .notice_text {
     font-size: 20px;
