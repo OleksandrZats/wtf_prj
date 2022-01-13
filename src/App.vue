@@ -248,6 +248,12 @@ main{
 .scrollOff{
   display: none;
 }
+
+@media (min-width: 2500px) {
+  html {
+    background-size: 250%;
+  }
+}
 @media only screen and (max-width: 1000px) {
   html {
     background-size: 400%;
