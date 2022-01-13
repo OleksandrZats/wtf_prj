@@ -54,8 +54,8 @@ export default {
     DaoPage,
   },
   mounted: function () {
-    this.activeSection = localStorage.activeSection;
-    this.scrollToSection(localStorage.activeSection);
+    this.activeSection = localStorage.activeSection || 0;
+    this.scrollToSection(this.activeSection);
   },
   watch: {
     activeSection(activeSection) {
