@@ -202,8 +202,8 @@ export default {
   position: absolute;
   width: 50px;
   height: 100%;
+  border:none;
   border-left: 1px solid;
-  border-left: 0px;
   border-radius: 40%;
   left: 0px;
 }
@@ -212,8 +212,8 @@ export default {
   position: absolute;
   width: 50px;
   height: 100%;
+  border:none;
   border-right: 1px solid;
-  border-left: 0px;
   border-radius: 40%;
   right: -5px;
 }
