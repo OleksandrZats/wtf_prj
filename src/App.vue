@@ -1,5 +1,6 @@
 <template>
-  <Header :activeLink="activeLink" @scrollTo="scroll" />
+  <Header :activeLink="activeLink" @scrollTo="scroll" @menuActive="menuActive" />
+  <main :class="{ 'scrollOff' : !isMenuInActive }" :style="{top:'-' + activeSection * 100 + 'vh'}">
   <AboutUs />
   <SmartContractsAudit />
   <CryptoAssets />
@@ -7,6 +8,7 @@
   <NftProjects />
   <Tokenomics />
   <DaoPage />
+  </main>
 </template>
 
 <script>
@@ -30,6 +32,7 @@ export default {
       touchStartY: 0,
       current: 0,
       activeLink: [true, false, false, false, false, false, false],
+      isMenuInActive: true,
     };
   },
   components: {
@@ -46,6 +49,10 @@ export default {
     this.scrollToSection(0); //method1 will execute at pageload
   },
   methods: {
+    menuActive(i){
+      this.isMenuInActive = i.active
+      console.log(this.isMenuInActive)
+    },
     calculateSectionOffsets() {
       setTimeout(() => {
         let sections = document.getElementsByClassName("scroll-to");
@@ -79,7 +86,6 @@ export default {
     moveDown() {
       this.inMove = true;
       let temp = this.activeSection--;
-      let prewPageFlag = false;
 
       //if (this.activeSection < 0) this.activeSection = this.offsets.length - 1; //For infinit-scroll
       if (this.activeSection < 0) this.activeSection = 0;
@@ -92,8 +98,6 @@ export default {
         .getElementsByClassName("scroll-to")
         [temp].classList.forEach((elem) => tempArr.push(elem));
       tempArr = [...new Set(tempArr)];
-      console.log(tempArr);
-      console.log(this.activeBlock);
       if (
         tempArr.length >
         document.getElementsByClassName("scroll-to")[this.activeSection]
@@ -101,7 +105,6 @@ export default {
       )
         this.activeBlock--;
 
-      console.log(this.activeBlock);
       this.activeLink = this.activeLink.map((el) => (el = false));
       this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
 
@@ -142,9 +145,9 @@ export default {
       if (this.inMove && !force) return false;
       this.activeSection = id;
       this.inMove = true;
-      document
-        .getElementsByClassName("scroll-to")
-        [id].scrollIntoView({ behavior: "smooth" });
+      // document
+      //   .getElementsByClassName("scroll-to")
+      //   [id].scrollIntoView({ behavior: "smooth" });
       setTimeout(() => {
         this.inMove = false;
       }, 400);
@@ -172,23 +175,26 @@ export default {
   },
   created() {
     this.calculateSectionOffsets();
-
-    window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-    window.addEventListener("mousewheel", this.handleMouseWheel, {
+    setTimeout(() => {
+    document.getElementsByTagName('main')[0].addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+    document.getElementsByTagName('main')[0].addEventListener("mousewheel", this.handleMouseWheel, {
       passive: false,
     }); // Other browsers
 
-    window.addEventListener("touchstart", this.touchStart, { passive: false }); // mobile devices
-    window.addEventListener("touchmove", this.touchMove, { passive: false }); // mobile devices
+    document.getElementsByTagName('main')[0].addEventListener("touchstart", this.touchStart, { passive: false }); // mobile devices
+    document.getElementsByTagName('main')[0].addEventListener("touchmove", this.touchMove, { passive: false }); // mobile devices
+    }, 250)
   },
   destroyed() {
-    window.removeEventListener("mousewheel", this.handleMouseWheel, {
+    setTimeout(() => {
+    document.getElementsByTagName('main')[0].removeEventListener("mousewheel", this.handleMouseWheel, {
       passive: false,
     }); // Other browsers
-    window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+    document.getElementsByTagName('main')[0].removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
 
-    window.removeEventListener("touchstart", this.touchStart); // mobile devices
-    window.removeEventListener("touchmove", this.touchMove); // mobile devices
+    document.getElementsByTagName('main')[0].removeEventListener("touchstart", this.touchStart); // mobile devices
+    document.getElementsByTagName('main')[0].removeEventListener("touchmove", this.touchMove); // mobile devices
+    }, 250)
   },
 };
 </script>
@@ -222,10 +228,25 @@ export default {
   align-items: center;
   justify-content: center;
 }
+::-webkit-scrollbar { /* chrome based */
+    width: 0px;  /* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
 html {
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+
   background: url("./assets/Background.svg") center center;
   background-size: cover;
   background-color: #d9dbda;
+}
+main{
+  position: relative;
+  transition-property: top;
+  transition-duration: 1s;
+}
+.scrollOff{
+  display: none;
 }
 @media only screen and (max-width: 1000px) {
   html {

@@ -195,6 +195,7 @@ export default {
   align-items: center;
   position: relative;
   justify-self: flex-end;
+  margin-bottom: 10%;
 }
 
 .notice::before {

@@ -1,11 +1,7 @@
 <template>
   <div class="header">
     <img class="header_logo" src="../assets/logo.png" alt="" />
-    <button
-      @click="setActiveMenu()"
-      @touchend="setActiveMenu()"
-      class="header_burger"
-    >
+    <button @click="setActiveMenu()" class="header_burger">
       <div
         :class="{ 'burger_line-active': activeBurger }"
         class="burger_line"
@@ -21,9 +17,6 @@
           @click="
             setLinkActive(0), scrollToSectionMenu('aboutUs'), changeSection()
           "
-          @touchend="
-            setLinkActive(0), scrollToSectionMenu('aboutUs'), changeSection()
-          "
           >About us</a
         >
       </li>
@@ -33,11 +26,6 @@
           class="item_link"
           @click="
             setLinkActive(1),
-              scrollToSectionMenu('smartContracts'),
-              changeSection()
-          "
-          @touchend="
-            setLinkActive(0),
               scrollToSectionMenu('smartContracts'),
               changeSection()
           "
@@ -53,11 +41,6 @@
               scrollToSectionMenu('cryptoAssets'),
               changeSection()
           "
-          @touchend="
-            setLinkActive(0),
-              scrollToSectionMenu('cryptoAssets'),
-              changeSection()
-          "
           >Crypto assets recovery</a
         >
       </li>
@@ -67,9 +50,6 @@
           class="item_link"
           @click="
             setLinkActive(3), scrollToSectionMenu('blockchain'), changeSection()
-          "
-          @touchend="
-            setLinkActive(0), scrollToSectionMenu('blockchain'), changeSection()
           "
           >Blockchain forensics</a
         >
@@ -83,11 +63,6 @@
               scrollToSectionMenu('nftProjects'),
               changeSection()
           "
-          @touchend="
-            setLinkActive(0),
-              scrollToSectionMenu('nftProjects'),
-              changeSection()
-          "
           >Nft projects</a
         >
       </li>
@@ -98,9 +73,6 @@
           @click="
             setLinkActive(5), scrollToSectionMenu('tokenomics'), changeSection()
           "
-          @touchend="
-            setLinkActive(0), scrollToSectionMenu('tokenomics'), changeSection()
-          "
           >Tokenomics</a
         >
       </li>
@@ -109,9 +81,6 @@
           :class="{ 'item_link-active': activeLink[6] }"
           class="item_link"
           @click="setLinkActive(6), scrollToSectionMenu('dao'), changeSection()"
-          @touchend="
-            setLinkActive(0), scrollToSectionMenu('dao'), changeSection()
-          "
           >Dao</a
         >
       </li>
@@ -125,15 +94,21 @@ export default {
     return {
       activeMenu: false,
       activeBurger: false,
+      scroll: true,
       name: "aboutUs",
     };
   },
   props: ["activeLink"],
-  emits: ["scrollTo"],
+  emits: ["scrollTo", "menuActive"],
   methods: {
     setActiveMenu() {
       this.activeMenu = !this.activeMenu;
       this.activeBurger = !this.activeBurger;
+      this.scroll = !this.scroll
+
+      this.$emit("menuActive", {
+        active: this.scroll
+      });
     },
     setLinkActive(pos) {
       this.setActiveMenu();
@@ -249,7 +224,6 @@ export default {
 }
 
 .mainmenu {
-  background-color: #b3e6bc;
   height: 100vh;
   width: 100%;
 
@@ -258,6 +232,8 @@ export default {
   justify-content: flex-start;
   align-items: center;
 
+  background-color: transparent;
+
   padding: 12%;
   z-index: 1;
   position: fixed;
@@ -265,9 +241,17 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+
+  transition-property: background-color;
+  transition-duration: 3s;
 }
 .mainmenu-active {
   display: flex;
+  background-color: #b3e6bc;
+
+  transition-property: background-color;
+  transition-duration: 3s;
+
 }
 
 .mainmenu_list {

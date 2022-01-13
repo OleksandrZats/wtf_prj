@@ -76,6 +76,8 @@ export default {
   align-items: center;
   position: relative;
   text-align: center;
+  
+  margin-bottom: 10%;
 }
 .subtextCont::after {
   content: "";

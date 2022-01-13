@@ -25,7 +25,7 @@ export default {
 }
 .titleSubTitle_header {
   flex-shrink: 1;
-  width: 35%;
+  width: 30%;
   font-size: 55px;
   font-family: "GTCinetype";
   text-align: left;
