@@ -311,11 +311,8 @@ export default {
 }
 
 @media (min-width: 2500px) {
-  .border_left{
-    padding-right: 70px;
-  }
-  .border_right{
-    padding-left: 70px;
+  .notice{
+    padding: 0 50px
   }
 }
 

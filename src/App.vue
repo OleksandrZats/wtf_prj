@@ -1,13 +1,20 @@
 <template>
-  <Header :activeLink="activeLink" @scrollTo="scroll" @menuActive="menuActive" />
-  <main :class="{ 'scrollOff' : !isMenuInActive }" :style="{top:'-' + activeSection * 100 + 'vh'}">
-  <AboutUs />
-  <SmartContractsAudit />
-  <CryptoAssets />
-  <Blockchain />
-  <NftProjects />
-  <Tokenomics />
-  <DaoPage />
+  <Header
+    :activeLink="activeLink"
+    @scrollTo="scroll"
+    @menuActive="menuActive"
+  />
+  <main
+    :class="{ scrollOff: !isMenuInActive }"
+    :style="{ top: '-' + this.activeHeight + 'vh' }"
+  >
+    <AboutUs />
+    <SmartContractsAudit />
+    <CryptoAssets />
+    <Blockchain />
+    <NftProjects />
+    <Tokenomics />
+    <DaoPage />
   </main>
 </template>
 
@@ -33,6 +40,7 @@ export default {
       current: 0,
       activeLink: [true, false, false, false, false, false, false],
       isMenuInActive: true,
+      activeHeight: 0,
     };
   },
   components: {
@@ -46,12 +54,17 @@ export default {
     DaoPage,
   },
   mounted: function () {
-    this.scrollToSection(0); //method1 will execute at pageload
+    this.activeSection = localStorage.activeSection;
+    this.scrollToSection(localStorage.activeSection);
+  },
+  watch: {
+    activeSection(activeSection) {
+      localStorage.activeSection = activeSection;
+    },
   },
   methods: {
-    menuActive(i){
-      this.isMenuInActive = i.active
-      console.log(this.isMenuInActive)
+    menuActive(i) {
+      this.isMenuInActive = i.active;
     },
     calculateSectionOffsets() {
       setTimeout(() => {
@@ -141,10 +154,12 @@ export default {
         this.activeBlock = i.block;
       }
     },
-    scrollToSection(id, force = false) {
+    scrollToSection(id, force = true) {
       if (this.inMove && !force) return false;
       this.activeSection = id;
       this.inMove = true;
+      this.activeHeight = this.activeSection * 100;
+
       // document
       //   .getElementsByClassName("scroll-to")
       //   [id].scrollIntoView({ behavior: "smooth" });
@@ -176,25 +191,41 @@ export default {
   created() {
     this.calculateSectionOffsets();
     setTimeout(() => {
-    document.getElementsByTagName('main')[0].addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-    document.getElementsByTagName('main')[0].addEventListener("mousewheel", this.handleMouseWheel, {
-      passive: false,
-    }); // Other browsers
+      document
+        .getElementsByTagName("main")[0]
+        .addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+      document
+        .getElementsByTagName("main")[0]
+        .addEventListener("mousewheel", this.handleMouseWheel, {
+          passive: false,
+        }); // Other browsers
 
-    document.getElementsByTagName('main')[0].addEventListener("touchstart", this.touchStart, { passive: false }); // mobile devices
-    document.getElementsByTagName('main')[0].addEventListener("touchmove", this.touchMove, { passive: false }); // mobile devices
-    }, 250)
+      document
+        .getElementsByTagName("main")[0]
+        .addEventListener("touchstart", this.touchStart, { passive: false }); // mobile devices
+      document
+        .getElementsByTagName("main")[0]
+        .addEventListener("touchmove", this.touchMove, { passive: false }); // mobile devices
+    }, 250);
   },
   destroyed() {
     setTimeout(() => {
-    document.getElementsByTagName('main')[0].removeEventListener("mousewheel", this.handleMouseWheel, {
-      passive: false,
-    }); // Other browsers
-    document.getElementsByTagName('main')[0].removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+      document
+        .getElementsByTagName("main")[0]
+        .removeEventListener("mousewheel", this.handleMouseWheel, {
+          passive: false,
+        }); // Other browsers
+      document
+        .getElementsByTagName("main")[0]
+        .removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
 
-    document.getElementsByTagName('main')[0].removeEventListener("touchstart", this.touchStart); // mobile devices
-    document.getElementsByTagName('main')[0].removeEventListener("touchmove", this.touchMove); // mobile devices
-    }, 250)
+      document
+        .getElementsByTagName("main")[0]
+        .removeEventListener("touchstart", this.touchStart); // mobile devices
+      document
+        .getElementsByTagName("main")[0]
+        .removeEventListener("touchmove", this.touchMove); // mobile devices
+    }, 250);
   },
 };
 </script>
@@ -228,24 +259,25 @@ export default {
   align-items: center;
   justify-content: center;
 }
-::-webkit-scrollbar { /* chrome based */
-    width: 0px;  /* ширина scrollbar'a */
-    background: transparent;  /* опционально */
+::-webkit-scrollbar {
+  /* chrome based */
+  width: 0px; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
 }
 html {
-    -ms-overflow-style: none;  /* IE 10+ */
-    scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
 
   background: url("./assets/Background.svg") center center;
   background-size: cover;
   background-color: #d9dbda;
 }
-main{
+main {
   position: relative;
   transition-property: top;
   transition-duration: 1s;
 }
-.scrollOff{
+.scrollOff {
   display: none;
 }
 
