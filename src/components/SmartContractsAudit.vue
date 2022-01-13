@@ -208,6 +208,7 @@ export default {
   border-left: 1px solid;
   border-radius: 40%;
   left: 0px;
+  box-shadow: none;
 }
 .border_right {
   content: "";
@@ -218,6 +219,7 @@ export default {
   border-right: 1px solid;
   border-radius: 40%;
   right: -5px;
+  box-shadow: none;
 }
 .notice_text {
   font-size: 24px;
