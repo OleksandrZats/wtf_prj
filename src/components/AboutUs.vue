@@ -95,6 +95,13 @@ export default {
   line-height: 1.162;
   text-align: center;
 }
+
+@media (min-width: 2500px) {
+  .subtextCont{
+    padding: 50px 40px;
+  }
+}
+
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
 }

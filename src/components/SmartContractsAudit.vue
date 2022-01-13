@@ -310,6 +310,15 @@ export default {
   width: 70px;
 }
 
+@media (min-width: 2500px) {
+  .border_left{
+    padding-right: 70px;
+  }
+  .border_right{
+    padding-left: 70px;
+  }
+}
+
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
 }
