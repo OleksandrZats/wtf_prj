@@ -46,10 +46,12 @@
     </div>
 
     <div class="notice">
+      <div class="border_left"></div>
       <p class="notice_text">
         If no vulnerabilities or issues were found and your contract is 100
         correct then the audit is free
       </p>
+      <div class="border_right"></div>
     </div>
   </section>
   <section class="smartContracts scroll-to" @scroll="handleScroll">
@@ -197,7 +199,7 @@ export default {
   justify-self: flex-end;
 }
 
-.notice::before {
+.border_left {
   content: "";
   position: absolute;
   width: 50px;
@@ -207,7 +209,7 @@ export default {
   border-radius: 40%;
   left: 0px;
 }
-.notice::after {
+.border_right {
   content: "";
   position: absolute;
   width: 50px;
