@@ -289,7 +289,7 @@ main {
 
 @media (min-width: 2500px) {
   html {
-    background-size: 250%;
+    background-size: 220%;
   }
 }
 @media only screen and (max-width: 1000px) {

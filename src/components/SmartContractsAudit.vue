@@ -396,14 +396,13 @@ export default {
   .note::before {
     font-size: 25px;
     padding: 10px 5px;
-    min-width: 150x;
   }
   .notice {
     width: 70%;
     padding-left: 2%;
     padding-right: 2%;
   
-  margin-bottom: 10%;
+    margin-bottom: 23%;
   }
   .notice_text {
     font-size: 20px;
