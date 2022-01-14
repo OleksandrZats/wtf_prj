@@ -404,6 +404,9 @@ export default {
   
     margin-bottom: 23%;
   }
+  .border_left, .border_right{
+    border: none;
+  }
   .notice_text {
     font-size: 20px;
   }
