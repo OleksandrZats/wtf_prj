@@ -56,12 +56,19 @@ export default {
   mounted: function () {
     if(isNaN(localStorage.activeSection) || localStorage.activeSection == null || localStorage.activeSection == undefined) this.activeSection = 0
     this.activeSection = localStorage.activeSection || 0;
+
+    if(isNaN(localStorage.activeBlock) || localStorage.activeBlock == null || localStorage.activeBlock == undefined) this.activeBlock = 0
+    this.activeBlock = localStorage.activeBlock || 0;
+
     this.scrollToSection(this.activeSection);
   },
   watch: {
     activeSection(activeSection) {
       localStorage.activeSection = activeSection;
     },
+    activeBlock(activeBlock) {
+      localStorage.activeBlock = activeBlock;
+    }
   },
   methods: {
     menuActive(i) {
@@ -119,9 +126,6 @@ export default {
       )
         this.activeBlock--;
 
-      this.activeLink = this.activeLink.map((el) => (el = false));
-      this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
-
       this.scrollToSection(this.activeSection, true);
     },
     moveUp() {
@@ -140,9 +144,6 @@ export default {
       )
         this.activeBlock++;
 
-      this.activeLink = this.activeLink.map((el) => (el = false));
-      this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
-
       this.scrollToSection(this.activeSection, true);
     },
     scroll(i) {
@@ -160,6 +161,10 @@ export default {
       this.activeSection = id;
       this.inMove = true;
       this.activeHeight = this.activeSection * 100;
+
+
+      this.activeLink = this.activeLink.map((el) => (el = false));
+      this.activeLink[this.activeBlock] = !this.activeLink[this.activeBlock];
 
       // document
       //   .getElementsByClassName("scroll-to")
